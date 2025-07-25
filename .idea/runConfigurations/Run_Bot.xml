@@ -1,10 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Bot" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="io.github.mayachen350.dreamhousebot.AppKt" />
-    <module name="DreamHouse-bot.main" />
-    <selectedOptions>
-      <option name="environmentVariables" visible="false" />
-    </selectedOptions>
+  <configuration default="false" name="Run Bot" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="io.github.mayachen350.chesnaybot.AppKt" />
+    <module name="Chesnay-bot.main" />
+    <shortenClasspath name="NONE" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
