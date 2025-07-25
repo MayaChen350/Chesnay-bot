@@ -5,5 +5,5 @@ RUN apt install ./jdk-24_linux-x64_bin.deb
 WORKDIR /salon
 COPY . .
 RUN dos2unix gradlew
-RUN bash ./gradlew shadowJar
+RUN if [ $(find . -name "Chesnay-bot-*all.jar") ]; then echo "All good."; else ./gradlew shadowJar; fi
 CMD ["sh", "-c", "java -jar $(ls ./build/libs/Chesnay-bot-*-all.jar | tail -n 1)"]

@@ -78,17 +78,6 @@ suspend fun logModPunishment(
 //    }
 //}
 
-suspend fun logEditedMessage(
-    event: MessageUpdateEvent
-) {
-    val message: Message = event.getMessage()
-    log(message.getGuild(), message.author) {
-        dreamhouseEmbedLogDefault(message.author)
-        title = "Message edited"
-        description = (event.old?.content ?: "Impossible to fetch") + "->" + message.content
-    }
-}
-
 /** Logs an auditLog in the `MessageChannel`.
  *
  * @param auditLogEntry The audit log logged in the `MessageChannel`.**/

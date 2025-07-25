@@ -16,7 +16,6 @@ import dev.kord.gateway.PrivilegedIntent
 import dev.kord.rest.builder.message.EmbedBuilder
 import io.github.cdimascio.dotenv.Dotenv
 import io.github.mayachen350.chesnaybot.features.command.handler.moderationCommands
-import io.github.mayachen350.chesnaybot.features.event.handler.logsEventListeners
 import io.github.mayachen350.chesnaybot.features.event.handler.roleMessageListeners
 import io.github.mayachen350.chesnaybot.features.event.logic.dreamhouseEmbedLogDefault
 import io.github.mayachen350.chesnaybot.features.extra.BotStatusHandler.statusBehavior
@@ -55,13 +54,13 @@ fun main(): Unit = runBlocking {
             notFound = "Nothing found!"
         }
 
-        kord {
-            cache {
-                messages { cache, description ->
-                    MapEntryCache(cache, description, MapLikeCollection.lruLinkedHashMap(maxSize = 100))
-                }
-            }
-        }
+//        kord {
+//            cache {
+//                messages { cache, description ->
+//                    MapEntryCache(cache, description, MapLikeCollection.lruLinkedHashMap(maxSize = 100))
+//                }
+//            }
+//        }
 
         onStart {
             setup(this.kord)
@@ -82,7 +81,6 @@ fun main(): Unit = runBlocking {
 
     // Register those listeners:
     roleMessageListeners()
-    logsEventListeners()
 }
 
 // I use this command a lot for testing

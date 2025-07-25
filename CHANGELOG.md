@@ -1,9 +1,39 @@
-# Changelog for `DreamHouse-Bot`
+# Changelog for `Chesnay-Bot`
 
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## 0.3.1 - 2025-07-24
+
+### Added
+
+- A lot of delay on other features
+- Actual useful readme file
+
+More technical stuff:
+
+- Database (Exposed mysql) (see backend)
+- Dockerfile
+- Startup logic
+
+## Removed
+
+- Logging edited messages
+
+### Changed
+
+- Fixes
+- Faster bot
+
+More technical stuff:
+
+- Refactoring
+- Better structure (hopefully)
+- Better use of coroutines
+- Constants are basically C macros instead of reading them
+- Updated dependencies
 
 ## 0.3.0 - 2025-02-13
 

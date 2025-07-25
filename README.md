@@ -13,9 +13,7 @@ Feel free to try [building and running](#building-and-running) the bot too!
 (If you're a friend of mine I'll gladly make you join the server too, just ask in DM. A lot of yapping there though)
 
 ## Notes
-Chesnay-Bot has been marked as being currently in "BETA", as most of the features written in the [todo.md](https://github.com/MayaChen350/Chesnay-bot/blob/main/todo.md) aren't made yet.
-
-However, due to a lack of time and the bot lacking any kind of relevance in the server, the development has been put on hold. Therefore, **its plans might change in the future.**
+Chesnay-Bot has been marked as being currently in "BETA", as it might not be entirely stable.
 
 ## Structure
 
@@ -35,26 +33,15 @@ Almost all of them are separated in two folders: `logic` and `handler`
 - The `handler` files define the actual **commands** and **listeners** groups. As they're pretty lightweight, you can see them as **contracts**. Things defined there exists for the bot.
 - The `logic` files define all the **actual command and listener logic**. Those can also use some of the `Utils` of the project as I try to minimize the duplication of code.
 
-[Commands](#commands) are also automatically described in the [commands.md](https://github.com/MayaChen350/Chesnay-bot/blob/v0.3.1/commands.md) file.
+Commands are also automatically described in the [commands.md](https://github.com/MayaChen350/Chesnay-bot/blob/v0.3.1/commands.md) file.
 
 ---
-
-### Listeners/Events
-TODO BEFORE `v0.3.1` MERGE
-
----
-
-### Commands
-(Commands are also described in the [commands.md](https://github.com/MayaChen350/Chesnay-bot/blob/main/commands.md) file)  
-TODO BEFORE `v0.3.1` MERGE
-
----
-
-### Extra
-TODO BEFORE `v0.3.1` MERGE
 
 ## Building and running
-TODO BEFORE `v0.3.1` MERGE
+You can simply just run `gradlew build` to build.  
+But to run the bot you should probably run `gradlew shadowJar` then try `run.bat` or `run.sh`
+
+If you are having a hard time with anything feel free to just build a docker image and run it, as there's a Dockerfile here for that, and it should work well. 
 
 ## Trivia
 - Chesnay Bot was supposed to be made in Haskell at start as a kind of challenge, but after having a hard time with it, I decided to use Kotlin for it instead. (Kotlin is my favorite programming language!)

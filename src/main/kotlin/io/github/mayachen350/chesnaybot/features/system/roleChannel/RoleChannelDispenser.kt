@@ -63,7 +63,7 @@ class RoleChannelDispenser(
                     try {
                         if (!event.getUser().isBot && event.getMessage().reactions
                                 .filter { it.emoji == event.emoji }
-                                .any { it.selfReacted }
+                                .none { it.selfReacted } // Why none and filter??
                         )
                             message.addReaction(event.emoji)
 

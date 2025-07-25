@@ -89,11 +89,11 @@ private suspend fun removeRoles(
                 membersAffected.add(member.id)
                 coroutineScope {
                     launch {
-                        roleFound!!.let { member.removeRole(it) }
+                        roleFound?.let { member.removeRole(it) }
                         log(getGuild(), member.asUser()) {
                             dreamhouseEmbedLogDefault(member.asUser())
 
-                            title = "Role added after restart"
+                            title = "Role removed after restart"
                             description = "Role: ${roleFound?.let { getGuild().getRole(it).mention } ?: "null"}"
                         }
                     }
@@ -129,14 +129,14 @@ private suspend fun addRoles(
         val member: Member? = members.firstOrNull { it.id == reaction.reactorId }
 
         if (member != null) {
-            if (rolesOfMember.none { it.roleId == roleFound.await().value && it.userId == member.id.value }) {
+            if (!member.isBot && rolesOfMember.none { it.roleId == roleFound.await().value && it.userId == member.id.value }) {
                 membersAffected.add(member.id)
                 launch {
                     member.addRole(roleFound.await())
                     log(getGuild(), member.asUser()) {
                         dreamhouseEmbedLogDefault(member.asUser())
 
-                        title = "Role removed after restart"
+                        title = "Role added after restart"
                         description = "Role: ${getGuild().getRole(roleFound.await()).mention}"
                     }
                 }

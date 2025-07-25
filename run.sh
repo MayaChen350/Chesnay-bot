@@ -9,19 +9,21 @@ fi
 
 ### Search for bot jar ###
 
-JAR=$(ls ./build/libs/DreamHouse-bot-*-all.jar | tail -n 1)
-if [ -z "$JAR" ]; then
-    JAR=$(ls DreamHouse-bot-*-all.jar | tail -n 1)
-fi
-
-# TODO: Ask if want to check in each subdirectories if not found
-
+JAR=$(ls build/libs/Chesnay-bot-*-all.jar | tail -n 1)
 ### Execute it or print an error message ###
 
 if [ ! -z "$JAR" ]; then
     java -jar $JAR
 else
-    echo "Error! A Dreamhouse-bot JAR was not found."
+    echo "JAR not found in the usual path, do you want to search the repo for the JAR? (y/n"
+    select yn in "Yes" "No"; do
+    	case $yn in
+        	Yes ) find . -name "Chesnay-bot-*-all.jar"; break;;
+        	No ) exit;;
+    	esac
+    done
+
+    echo "Error! A Chesnay-bot JAR was not found."
 fi
 
 # TODO: Restarting the bot automatically
