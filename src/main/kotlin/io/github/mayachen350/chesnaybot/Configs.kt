@@ -1,13 +1,11 @@
 package io.github.mayachen350.chesnaybot
 
-import kotlinx.serialization.Serializable
-import me.jakejmattson.discordkt.dsl.Data
+object Configs {
+    const val botId: ULong = 1317659585804505120u
 
-@Serializable
-data class Configs(
-    var roleChannelId: Long = 1373485925295722548,
-    var logChannelId: Long = 1373485926084509788,
-    var serverId: Long = 1373485924779819099
-) : Data()
+    const val roleChannelId: ULong = 1373485925295722548u
+    const val logChannelId: ULong = 1373485926084509788u
+    const val serverId: ULong = 1373485924779819099u
 
-lateinit var configs: Configs
+    const val mayaIdeaSpamChannelid: ULong = 1373485924779819099u
+}

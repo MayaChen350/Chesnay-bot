@@ -1,17 +1,25 @@
 package io.github.mayachen350.chesnaybot.features.event.logic
 
 import dev.kord.common.entity.AuditLogEvent
+import dev.kord.core.behavior.GuildBehavior
+import dev.kord.core.behavior.channel.asChannelOf
 import dev.kord.core.behavior.channel.createEmbed
 import dev.kord.core.entity.AuditLogEntry
 import dev.kord.core.entity.Message
 import dev.kord.core.entity.User
+import dev.kord.core.entity.channel.GuildChannel
 import dev.kord.core.entity.channel.MessageChannel
 import dev.kord.core.entity.effectiveName
 import dev.kord.core.entity.interaction.GuildApplicationCommandInteraction
 import dev.kord.core.event.message.MessageUpdateEvent
 import dev.kord.rest.builder.message.EmbedBuilder
-import io.github.mayachen350.chesnaybot.log
+import io.github.mayachen350.chesnaybot.Configs
 import io.github.mayachen350.chesnaybot.resources.AuditLogsStrings
+import io.github.mayachen350.chesnaybot.utils.toSnowflake
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import me.jakejmattson.discordkt.util.addField
 
@@ -30,6 +38,31 @@ import me.jakejmattson.discordkt.util.addField
  *     timestamp = Clock.System.now()
  * ```
  **/
+
+/** Logs an effect in the log channel. This is the base function for log functions.
+ *
+ *  @param guild The discord guild (the server) parameter required to find the logs channel where to send the logs.
+ *  @param displayedUser The user we're going to have information displayed of. Default to the one associated to the interaction.
+ *  @param embedExtra Extra embed things to add for functions or anonymous functions.**/
+@OptIn(DelicateCoroutinesApi::class)
+fun log(
+    guild: GuildBehavior,
+    displayedUser: User?,
+    embedExtra: suspend EmbedBuilder.() -> Unit = { },
+) {
+    GlobalScope.launch(Dispatchers.IO) {
+        val channel: GuildChannel? = guild.getChannelOrNull(Configs.logChannelId.toSnowflake())
+        if (channel != null) {
+            channel.asChannelOf<MessageChannel>()
+                .createEmbed {
+                    dreamhouseEmbedLogDefault(displayedUser)
+                    embedExtra()
+                }
+        } else
+            println("Could not log the command log! Log channelId undefined or set to an invalid id.")
+    }.start()
+}
+
 fun EmbedBuilder.dreamhouseEmbedLogDefault(displayedUser: User?) {
     if (displayedUser != null) {
         author {

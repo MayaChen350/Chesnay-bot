@@ -7,8 +7,8 @@ import dev.kord.core.behavior.interaction.respondEphemeral
 import dev.kord.core.behavior.interaction.respondPublic
 import dev.kord.core.entity.Member
 import dev.kord.core.entity.interaction.GuildApplicationCommandInteraction
+import io.github.mayachen350.chesnaybot.features.event.logic.log
 import io.github.mayachen350.chesnaybot.features.event.logic.logModPunishment
-import io.github.mayachen350.chesnaybot.log
 import io.github.mayachen350.chesnaybot.resources.ModerationStrings
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.take

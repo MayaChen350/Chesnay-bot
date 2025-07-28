@@ -27,28 +27,28 @@ sealed class StatusBehavior {
         }
     }
 
-    data object Singer : StatusBehavior() {
-        private lateinit var presenceLines: List<String>
-        private var indexLyrics: Int = 0
-
-        private fun incrementIndex() {
-            if (indexLyrics < presenceLines.size - 1) indexLyrics++ else indexLyrics = 0
-        }
-
-        override suspend fun changeStatus(ctx: Discord) {
-            println("STARTING BOT STATUS LOOP")
-            while (true) {
-                ctx.kord.editPresence {
-                    delay(10000L)
-                    incrementIndex()
-                    state = presenceLines[indexLyrics]
-                }
-            }
-        }
-
-        override fun configure() {
-            super.configure()
-            presenceLines = Path("src/main/resources/raw/lyrics.txt").readText().lines()
-        }
-    }
+//    data object Singer : StatusBehavior() {
+//        private lateinit var presenceLines: List<String>
+//        private var indexLyrics: Int = 0
+//
+//        private fun incrementIndex() {
+//            if (indexLyrics < presenceLines.size - 1) indexLyrics++ else indexLyrics = 0
+//        }
+//
+//        override suspend fun changeStatus(ctx: Discord) {
+//            println("STARTING BOT STATUS LOOP")
+//            while (true) {
+//                ctx.kord.editPresence {
+//                    delay(10000L)
+//                    incrementIndex()
+//                    state = presenceLines[indexLyrics]
+//                }
+//            }
+//        }
+//
+//        override fun configure() {
+//            super.configure()
+//            presenceLines = Path("src/main/resources/raw/lyrics.txt").readText().lines()
+//        }
+//    }
 }

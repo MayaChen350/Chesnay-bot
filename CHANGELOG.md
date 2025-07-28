@@ -5,10 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### In progress
+
+- System that automatically creates a discussion thread when Maya adds send something in the Maya-idea-spam channel
+- Tests for the role channel system
+
+UNTESTED)
+
+### Changed
+
+- Slightly faster bot
+
+More technical stuff:
+
+- Better structure (hopefully)
+- Configs are now compile time constants
+
+
 ## 0.3.1 - 2025-07-24
 
 ### Added
 
+- The bot now update the members roles from the reactions in the role channel when it restarts
 - A lot of delay on other features
 - Actual useful readme file
 
@@ -24,7 +44,6 @@ More technical stuff:
 
 ### Changed
 
-- Fixes
 - Faster bot
 
 More technical stuff:

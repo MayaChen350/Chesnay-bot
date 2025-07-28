@@ -1,10 +1,9 @@
-package io.github.mayachen350.chesnaybot.features.event.handler
+//package io.github.mayachen350.chesnaybot.features.event.handler
 
 import dev.kord.core.behavior.channel.asChannelOf
 import dev.kord.core.entity.channel.MessageChannel
 import dev.kord.core.event.guild.GuildAuditLogEntryCreateEvent
 import dev.kord.core.event.message.MessageUpdateEvent
-import io.github.mayachen350.chesnaybot.configs
 import io.github.mayachen350.chesnaybot.features.event.logic.auditLogLog
 import me.jakejmattson.discordkt.dsl.listeners
 import me.jakejmattson.discordkt.util.toSnowflake

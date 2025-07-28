@@ -10,6 +10,7 @@ import io.github.mayachen350.chesnaybot.backend.RolesGivenToMemberEntity
 import io.github.mayachen350.chesnaybot.backend.RolesGivenToMemberTable
 import io.github.mayachen350.chesnaybot.backend.ValetService
 import io.github.mayachen350.chesnaybot.features.event.logic.dreamhouseEmbedLogDefault
+import io.github.mayachen350.chesnaybot.features.event.logic.log
 import io.github.mayachen350.chesnaybot.features.extra.BotStatusHandler
 import io.github.mayachen350.chesnaybot.features.system.roleChannel.RoleChannelDispenser.Companion.findRoleFromEmoji
 import io.github.mayachen350.chesnaybot.features.utils.ReactionSimple
@@ -28,7 +29,7 @@ import kotlin.io.path.notExists
 
 /*Run all the setup and onStart steps*/
 suspend fun setup(ctx: Kord) = coroutineScope {
-    getGuild = { ctx.getGuild(configs.serverId.toSnowflake()) }
+    getGuild = { ctx.getGuild(Configs.serverId.toSnowflake()) }
 
     setupDatabase()
 
@@ -40,7 +41,7 @@ suspend fun setup(ctx: Kord) = coroutineScope {
 private suspend fun updateRoles(): Unit = coroutineScope {
     println("Updating roles!")
     with(getGuild()) {
-        val messages = getChannel(configs.roleChannelId.toSnowflake()).asChannelOf<TextChannel>().messages
+        val messages = getChannel(Configs.roleChannelId.toSnowflake()).asChannelOf<TextChannel>().messages
 
         val reactions = messages.flatMapConcat { message ->
             message.reactions.map { reaction ->
@@ -119,39 +120,42 @@ private suspend fun addRoles(
     val membersAffected: MutableSet<Snowflake> = mutableSetOf()
 
     reactions.forEach { reaction ->
-        val roleFound = async(Dispatchers.Default) {
-            findRoleFromEmoji(
-                reaction.message.content,
-                reaction.reaction.emoji
-            )!!
-        }
+        if (reaction.reactorId.value != Configs.botId) {
+            val roleFound = async(Dispatchers.Default) {
+                findRoleFromEmoji(
+                    reaction.message.content,
+                    reaction.reaction.emoji
+                )!!
+            }
 
-        val member: Member? = members.firstOrNull { it.id == reaction.reactorId }
+            val member: Member? = members.firstOrNull { it.id == reaction.reactorId }
 
-        if (member != null) {
-            if (!member.isBot && rolesOfMember.none { it.roleId == roleFound.await().value && it.userId == member.id.value }) {
-                membersAffected.add(member.id)
-                launch {
-                    member.addRole(roleFound.await())
-                    log(getGuild(), member.asUser()) {
-                        dreamhouseEmbedLogDefault(member.asUser())
+            if (member != null) {
+                if (rolesOfMember.none { it.roleId == roleFound.await().value && it.userId == member.id.value }) {
+                    membersAffected.add(member.id)
+                    launch {
+                        member.addRole(roleFound.await())
+                        log(getGuild(), member.asUser()) {
+                            dreamhouseEmbedLogDefault(member.asUser())
 
-                        title = "Role added after restart"
-                        description = "Role: ${getGuild().getRole(roleFound.await()).mention}"
+                            title = "Role added after restart"
+                            description = "Role: ${getGuild().getRole(roleFound.await()).mention}"
+                        }
+                    }
+                    launch {
+                        ValetService.saveRoleAdded(
+                            member.id.value,
+                            roleFound.await().value
+                        )
                     }
                 }
-                launch {
-                    ValetService.saveRoleAdded(
-                        member.id.value,
-                        roleFound.await().value
-                    )
+            } else {
+                roleFound.cancel()
+                messages.collect {
+                    it.deleteReaction(reaction.reactorId, reaction.reaction.emoji)
                 }
+                ValetService.removeAllSavedRolesFromMember(reaction.reactorId.value)
             }
-        } else {
-            messages.collect {
-                it.deleteReaction(reaction.reactorId, reaction.reaction.emoji)
-            }
-            ValetService.removeAllSavedRolesFromMember(reaction.reactorId.value)
         }
     }
 
