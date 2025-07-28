@@ -5,11 +5,10 @@ import kotlin.io.path.createDirectories
 import kotlin.io.path.notExists
 
 plugins {
-    kotlin("jvm") version "2.0.20"
-    kotlin("plugin.serialization") version "2.1.0"
-    id("com.gradleup.shadow") version "9.0.0-beta4"
-
-    id("org.flywaydb.flyway") version "9.22.3"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.flyway)
 }
 
 
@@ -21,16 +20,14 @@ version = Properties().run {
 description = "Official bot of the Salon de Chesnay Discord Server."
 
 dependencies {
-    implementation("me.jakejmattson:DiscordKt:0.24.0")
-    implementation("io.github.cdimascio:dotenv-kotlin:6.4.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0-RC")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
-
+    implementation(libs.discordkt)
+    implementation(libs.dotenv)
+    implementation(libs.coroutines.core)
     implementation(libs.exposed.core)
-    implementation(libs.exposed.jdbc)
+    implementation(libs.exposed.r2dbc)
     implementation(libs.exposed.migration)
     implementation(libs.exposed.dao)
-    implementation("mysql:mysql-connector-java:8.0.33")
+    implementation(libs.mysql.connector)
 
     testImplementation(kotlin("test"))
 }
@@ -55,6 +52,6 @@ flyway {
             createDirectories()
     }
 
-    url = "jdbc:mysql://192.168.0.188:3306/SalonChesnay"
+    url = ":r2dbc://192.168.0.188:3306/SalonChesnay"
     baselineOnMigrate = true
 }
