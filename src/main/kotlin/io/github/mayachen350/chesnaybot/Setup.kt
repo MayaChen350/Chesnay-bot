@@ -19,9 +19,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import me.jakejmattson.discordkt.util.toSnowflake
 import org.jetbrains.exposed.v1.core.StdOutSqlLogger
-import org.jetbrains.exposed.v1.r2dbc.SchemaUtils
-import org.jetbrains.exposed.v1.r2dbc.addLogger
-import org.jetbrains.exposed.v1.r2dbc.transactions.suspendTransaction
+import org.jetbrains.exposed.v1.jdbc.SchemaUtils
+import org.jetbrains.exposed.v1.jdbc.addLogger
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import java.util.*
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectory
@@ -51,6 +51,7 @@ private suspend fun updateRoles(): Unit = coroutineScope {
             }.merge()
         }.toList()
 
+        // TODO: Fix those
         // Remove roles that were removed
 //        removeRoles(ValetService.getAllSavedReactionRoles().await(), members, reactions)
 //
@@ -61,6 +62,7 @@ private suspend fun updateRoles(): Unit = coroutineScope {
     }
 }
 
+// TODO: Test and Fix
 private suspend fun removeRoles(
     rolesOfMemberQueue: Queue<RolesGivenToMemberEntity>,
     members: Flow<Member>,
@@ -111,6 +113,7 @@ private suspend fun removeRoles(
         println("Removed roles to ${membersAffected.count()} members!")
 }
 
+// TODO: Test and Fix
 private suspend fun addRoles(
     rolesOfMember: List<RolesGivenToMemberEntity>,
     members: Flow<Member>,
@@ -163,14 +166,14 @@ private suspend fun addRoles(
         println("Added roles to ${membersAffected.count()} members!")
 }
 
-private suspend fun setupDatabase() {
+private fun setupDatabase() {
     println("Setting up database!")
     Path("data/").run {
         if (notExists())
             createDirectory()
     }
 
-    suspendTransaction(db = ValetService.db) {
+    transaction(ValetService.db) {
         addLogger(StdOutSqlLogger)
 
         SchemaUtils.create(RolesGivenToMemberTable)

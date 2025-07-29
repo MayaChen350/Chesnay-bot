@@ -45,4 +45,5 @@ bin/
 .DS_Store
 
 *.env
-DreamHouse-bot*.jar
+Chesnay-bot*.jar
+.idea/discord.xml

@@ -24,10 +24,10 @@ dependencies {
     implementation(libs.dotenv)
     implementation(libs.coroutines.core)
     implementation(libs.exposed.core)
-    implementation(libs.exposed.r2dbc)
+    implementation(libs.exposed.jdbc)
     implementation(libs.exposed.migration)
     implementation(libs.exposed.dao)
-    implementation(libs.mysql.connector)
+    implementation(libs.mysql.connector) // it's vulnerable :c
 
     testImplementation(kotlin("test"))
 }
@@ -52,6 +52,6 @@ flyway {
             createDirectories()
     }
 
-    url = ":r2dbc://192.168.0.188:3306/SalonChesnay"
+    url = ":jdbc://192.168.0.188:3306/SalonChesnay"
     baselineOnMigrate = true
 }

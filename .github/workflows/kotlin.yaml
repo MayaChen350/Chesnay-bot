@@ -1,0 +1,20 @@
+name: Build and test
+
+on:
+  push:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+      - name: Gradle build
+        run: chmod +x gradlew && ./gradlew build
+      - name: Gradle test
+        run: ./gradlew test
