@@ -11,5 +11,5 @@ fun Message.isInChannel(channelId: Snowflake): Boolean =
 
 /** Check if the message is in the role assignment channel.
  *
- * The role assignment channel has its id stored in configs\bot_configs.json. **/
-fun Message.isInRoleChannel(): Boolean = isInChannel(Configs.roleChannelId.toSnowflake())
+ * The role assignment channel has its id stored in the Configs object **/
+inline fun Message.isInRoleChannel(): Boolean = isInChannel(Configs.roleChannelId.toSnowflake())

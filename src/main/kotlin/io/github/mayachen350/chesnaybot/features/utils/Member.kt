@@ -15,6 +15,6 @@ import kotlinx.coroutines.withContext
 //
 //fun Member.getRoleOrNull(roleId: Snowflake): Snowflake? = this.roleIds.singleOrNull { it == roleId }
 
-suspend fun Member.hasRole(roleId: Snowflake): Boolean = withContext(Dispatchers.IO) {
+suspend inline fun Member.hasRole(roleId: Snowflake): Boolean = withContext(Dispatchers.IO) {
     this@hasRole.roleIds.any { it == roleId }
 }

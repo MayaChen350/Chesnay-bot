@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bd8a73e-8423-4386-9277-c560cdfec8f2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/kotlin.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/data.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/Setup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/Setup.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/backend/ValetService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/backend/ValetService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/features/system/roleChannel/RoleChannelDispenser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/features/system/roleChannel/RoleChannelDispenser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/features/utils/Member.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/features/utils/Member.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/features/utils/Message.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/features/utils/Message.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/features/utils/ReactionEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/io/github/mayachen350/chesnaybot/features/utils/ReactionEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/io/github/mayachen350/chesnaybot/RoleChannelSysTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/io/github/mayachen350/chesnaybot/RoleChannelSysTests.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,37 +70,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle./home/mayachen/Dev/Chesnay-bot [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build Chesnay-bot.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [assemble].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [buildDependents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [buildNeeded].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [check].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [dependentComponents].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [init].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [mainClasses].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [resolvableConfigurations].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [updateLegacyAbi].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Chesnay-bot [wrapper].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Load Gradle Dependencies.executor&quot;: &quot;Run&quot;,
-    &quot;Kotlin.Run Bot.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;v0.4&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mayachen/Dev/Chesnay-bot/build.gradle.kts&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.5356322&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle./home/mayachen/Dev/Chesnay-bot [build].executor": "Run",
+    "Gradle.Build Chesnay-bot.executor": "Run",
+    "Gradle.Chesnay-bot [assemble].executor": "Run",
+    "Gradle.Chesnay-bot [buildDependents].executor": "Run",
+    "Gradle.Chesnay-bot [buildNeeded].executor": "Run",
+    "Gradle.Chesnay-bot [build].executor": "Run",
+    "Gradle.Chesnay-bot [check].executor": "Run",
+    "Gradle.Chesnay-bot [clean].executor": "Run",
+    "Gradle.Chesnay-bot [dependentComponents].executor": "Run",
+    "Gradle.Chesnay-bot [init].executor": "Run",
+    "Gradle.Chesnay-bot [mainClasses].executor": "Run",
+    "Gradle.Chesnay-bot [resolvableConfigurations].executor": "Run",
+    "Gradle.Chesnay-bot [updateLegacyAbi].executor": "Run",
+    "Gradle.Chesnay-bot [wrapper].executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.Load Gradle Dependencies.executor": "Run",
+    "Gradle.RoleChannelSysTests.executor": "Run",
+    "Gradle.RoleChannelSysTests.findRoleFromEmojiTest_Correct_Custom.executor": "Run",
+    "Kotlin.Run Bot.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "v0.4",
+    "last_opened_file_path": "/home/mayachen/Dev/Chesnay-bot/build.gradle.kts",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.5356322",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle build" />
@@ -161,28 +162,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="Chesnay-bot [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="init" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
     <configuration name="Chesnay-bot [resolvableConfigurations]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -227,12 +206,61 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="RoleChannelSysTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;io.github.mayachen350.chesnaybot.RoleChannelSysTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="RoleChannelSysTests.findRoleFromEmojiTest_Correct_Custom" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;io.github.mayachen350.chesnaybot.RoleChannelSysTests.findRoleFromEmojiTest_Correct_Custom&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Chesnay-bot [build]" />
+        <item itemvalue="Gradle.RoleChannelSysTests.findRoleFromEmojiTest_Correct_Custom" />
+        <item itemvalue="Gradle.RoleChannelSysTests" />
         <item itemvalue="Gradle.Chesnay-bot [resolvableConfigurations]" />
         <item itemvalue="Gradle.Chesnay-bot [wrapper]" />
-        <item itemvalue="Gradle.Chesnay-bot [init]" />
       </list>
     </recent_temporary>
   </component>
@@ -245,5 +273,16 @@
       <updated>1753301851840</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
