@@ -12,13 +12,15 @@ import io.github.mayachen350.chesnaybot.features.event.logic.log
 import io.github.mayachen350.chesnaybot.features.utils.ReactionEvent
 import io.github.mayachen350.chesnaybot.features.utils.hasRole
 import io.github.mayachen350.chesnaybot.features.utils.isInRoleChannel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.jakejmattson.discordkt.util.toSnowflake
 import me.jakejmattson.discordkt.util.trimToID
 
 /** Union of the logic for the role assignment channel.**/
 class RoleChannelDispenser(
-    private val addEvent: ReactionAddEvent? = null,
-    private val removeEvent: ReactionRemoveEvent? = null
+    addEvent: ReactionAddEvent? = null,
+    removeEvent: ReactionRemoveEvent? = null
 ) {
 
     companion object {
@@ -55,41 +57,42 @@ class RoleChannelDispenser(
             // Search for the role
             val roleFoundId: Snowflake? = findRoleFromEmoji(message.content, event.emoji)
 
-
             if (roleFoundId != null) {
                 val member = event.getUserAsMember()
 
                 if (member != null) {
                     try {
-                        if (!event.getUser().isBot && event.getMessage().reactions
+                        // If there's not any reaction from the bot for this specific reaction add one
+                        if (member.isBot && message.reactions
                                 .filter { it.emoji == event.emoji }
-                                .none { it.selfReacted } // Why none and filter??
-                        )
+                                .none { it.selfReacted }
+                        ) {
                             message.addReaction(event.emoji)
+                        }
 
-                        if (addEvent != null && !member.hasRole(roleFoundId)) {
+                        if (event.isAddEvent() && !member.hasRole(roleFoundId)) {
                             member.addRole(roleFoundId)
                             ValetService.saveRoleAdded(member.id.value, roleFoundId.value)
-                        } else if (addEvent == null && member.hasRole(roleFoundId)) {
-                            event.getUserAsMember()?.removeRole(roleFoundId)
+                        } else if (event.isRemoveEvent() && member.hasRole(roleFoundId)) {
+                            member.removeRole(roleFoundId)
                             ValetService.saveRoleRemoved(member.id.value, roleFoundId.value)
                         }
 
-                        log(event.guild!!, event.getUser()) {
-                            dreamhouseEmbedLogDefault(event.getUser())
+                        log(event.guild!!, member) {
+                            dreamhouseEmbedLogDefault(member)
 
                             title =
-                                if (addEvent != null) "Role added via the role channel"
+                                if (event.isAddEvent()) "Role added via the role channel"
                                 else "Role removed via the role channel"
                             description = "Role: ${event.getRole(roleFoundId).mention}"
                         }
                     } catch (e: RestRequestException) {
-                        println("An error happened in the role channe: ${e.error}")
-                        log(event.guild!!, event.getUser()) {
-                            dreamhouseEmbedLogDefault(event.getUser())
+                        println("An error happened in the role channel: ${e.error}")
+                        log(event.guild!!, member) {
+                            dreamhouseEmbedLogDefault(member)
 
                             title =
-                                if (addEvent != null) "Couldn't add role via the role channel"
+                                if (event.isAddEvent()) "Couldn't add role via the role channel"
                                 else "Couldn't remove Role via the role channel"
                             description = "An error happened: ${e.error?.message ?: e.message}\n" +
                                     "Role: ${event.getRole(roleFoundId).mention}"

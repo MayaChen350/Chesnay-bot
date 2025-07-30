@@ -20,8 +20,10 @@ UNTESTED)
 
 More technical stuff:
 
+- Updated dependencies
 - Better structure (hopefully)
 - Configs are now compile time constants
+- Refactor
 
 
 ## 0.3.1 - 2025-07-24
