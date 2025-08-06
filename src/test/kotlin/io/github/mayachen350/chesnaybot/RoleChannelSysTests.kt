@@ -61,9 +61,9 @@ class RoleChannelSysTests {
         val role2: Snowflake = 1317660304292712476.toSnowflake()
         val role3: Snowflake = 1317660304292712472.toSnowflake()
 
-        assertEquals(role1, findRoleFromEmoji(messageContent1, emoji1))
-        assertEquals(role2, findRoleFromEmoji(messageContent1, emoji2))
-        assertEquals(role3, findRoleFromEmoji(messageContent1, emoji3))
+        assertEquals(role1, findRoleFromEmoji(messageContent2, emoji1))
+        assertEquals(role2, findRoleFromEmoji(messageContent2, emoji2))
+        assertEquals(role3, findRoleFromEmoji(messageContent2, emoji3))
     }
 
     @Test

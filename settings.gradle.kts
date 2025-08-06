@@ -15,3 +15,4 @@ plugins {
 }
 
 rootProject.name = "Chesnay-bot"
+//include("CLIRemote")

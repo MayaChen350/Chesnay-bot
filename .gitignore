@@ -47,3 +47,4 @@ bin/
 *.env
 Chesnay-bot*.jar
 .idea/discord.xml
+.idea/workspace.xml
