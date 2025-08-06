@@ -3,7 +3,7 @@
 
 rem TODO: Search for the JAR at the script / command execution root
 
-for %%i in (.\build\libs\DreamHouse-bot-*-all.jar) do (
+for %%i in (.\build\libs\discordBot-*-all.jar) do (
     java -jar %%i
     echo Bot disconnected.
     goto :BREAK

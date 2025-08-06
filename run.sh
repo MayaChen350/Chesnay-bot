@@ -9,7 +9,7 @@ fi
 
 ### Search for bot jar ###
 
-JAR=$(ls build/libs/Chesnay-bot-*-all.jar | tail -n 1)
+JAR=$(ls build/libs/discordBot-*-all.jar | tail -n 1)
 ### Execute it or print an error message ###
 
 if [ ! -z "$JAR" ]; then
@@ -18,7 +18,7 @@ else
     echo "JAR not found in the usual path, do you want to search the repo for the JAR? (y/n"
     select yn in "Yes" "No"; do
     	case $yn in
-        	Yes ) find . -name "Chesnay-bot-*-all.jar"; break;;
+        	Yes ) find . -name "discordBot-*-all.jar"; break;;
         	No ) exit;;
     	esac
     done

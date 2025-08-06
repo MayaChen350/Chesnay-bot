@@ -1,0 +1,15 @@
+package io.github.mayachen350.chesnaybot.bot.features.utils
+
+import dev.kord.common.entity.Snowflake
+import dev.kord.core.entity.Message
+import io.github.mayachen350.chesnaybot.bot.Configs
+import io.github.mayachen350.chesnaybot.bot.utils.toSnowflake
+
+/** Check if the message is in the right channel.**/
+fun Message.isInChannel(channelId: Snowflake): Boolean =
+    this.channelId == channelId
+
+/** Check if the message is in the role assignment channel.
+ *
+ * The role assignment channel has its id stored in the Configs object **/
+inline fun Message.isInRoleChannel(): Boolean = isInChannel(Configs.roleChannelId.toSnowflake())
