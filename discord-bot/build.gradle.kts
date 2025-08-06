@@ -27,6 +27,7 @@ dependencies {
     implementation(libs.exposed.migration)
     implementation(libs.exposed.dao)
     implementation(libs.mysql.connector) // it's vulnerable :c
+    implementation(libs.netty.server)
 
     testImplementation(kotlin("test"))
 }

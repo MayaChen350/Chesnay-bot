@@ -52,6 +52,7 @@ fun main(): Unit = runBlocking {
 //        }
 
         onStart {
+
             setup(this.kord)
 
             println("BOT SETUP ENDED")
@@ -59,8 +60,12 @@ fun main(): Unit = runBlocking {
             this@runBlocking.launch(Dispatchers.Default) {
                 BotStatusHandler.statusBehavior.changeStatus(this@onStart)
             }
-
             println("BOT STATUS LOOP STARTED")
+
+            this@runBlocking.launch(Dispatchers.IO) {
+                RemoteAccess.connect()
+                RemoteAccess.listen()
+            }
         }
     }
 

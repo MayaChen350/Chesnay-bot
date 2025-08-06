@@ -45,8 +45,8 @@ import me.jakejmattson.discordkt.util.addField
 @OptIn(DelicateCoroutinesApi::class)
 fun log(
     guild: GuildBehavior,
-    displayedUser: User?,
-    embedExtra: suspend EmbedBuilder.() -> Unit = { },
+    displayedUser: User? = null,
+    embedExtra: suspend  EmbedBuilder.() -> Unit = { },
 ) {
     GlobalScope.launch(Dispatchers.IO) {
         val channel: GuildChannel? = guild.getChannelOrNull(Configs.logChannelId.toSnowflake())
