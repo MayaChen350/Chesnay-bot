@@ -1,24 +1,40 @@
 package io.github.mayachen350.chesnaybot.bot
 
-import com.corundumstudio.socketio.Configuration
 import io.github.mayachen350.chesnaybot.bot.features.event.logic.log
+import io.ktor.network.selector.*
+import io.ktor.network.sockets.*
+import io.ktor.utils.io.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
-import java.net.ServerSocket
 
 object RemoteAccess {
     const val HOSTNAME: String = ""
 
-    suspend fun connect() {
-        coroutineScope() {
-            try {
-                val server = ServerSocket(3843)
+    lateinit var writeChannel: ByteWriteChannel
 
-                val connection = withContext(Dispatchers.Default) {
-                    server.accept()!!
+    suspend fun connect() {
+        coroutineScope {
+            try {
+                val selectorManager = SelectorManager(Dispatchers.IO)
+                val serverSocket = aSocket(selectorManager).tcp().bind("127.0.0.1", 3843)
+
+                val socket = serverSocket.accept()
+                writeChannel = socket.openWriteChannel()
+
+                socket.openReadChannel().run {
+
+                    withContext(Dispatchers.IO) {
+                        while (this.isActive) {
+                            while (this@run.availableForRead != 0) {
+                                handle(this@run.readUTF8Line())
+                            }
+                        }
+                    }
                 }
+
+                socket.awaitClosed()
 
             } catch (e: Exception) {
                 println(
@@ -36,9 +52,14 @@ object RemoteAccess {
         }
     }
 
-    suspend fun listen() {
-
+    suspend fun handle(response: String?) {
+        if (response != null) {
+            writeChannel.writeStringUtf8(
+                when (response) {
+                    "hi" -> "hi!"
+                    else -> "idk what to say to that"
+                }
+            )
+        }
     }
-
-
 }

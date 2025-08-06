@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Remote access to the bot's stuff or something with sockets"
 
 dependencies {
-    implementation(libs.netty.client)
+    implementation(libs.ktor.network)
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }

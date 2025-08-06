@@ -10,6 +10,7 @@ import io.github.mayachen350.chesnaybot.bot.features.event.handler.roleMessageLi
 import io.github.mayachen350.chesnaybot.bot.features.extra.BotStatusHandler
 import io.github.mayachen350.chesnaybot.bot.features.extra.StatusBehavior
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import me.jakejmattson.discordkt.commands.commands
@@ -63,8 +64,7 @@ fun main(): Unit = runBlocking {
             println("BOT STATUS LOOP STARTED")
 
             this@runBlocking.launch(Dispatchers.IO) {
-                RemoteAccess.connect()
-                RemoteAccess.listen()
+                while (isActive) RemoteAccess.connect()
             }
         }
     }

@@ -9,6 +9,7 @@ flyway = "11.10.4"
 mysql = "8.0.33"
 netty-server = "2.0.13"
 netty-client = "0.6.0"
+ktor = "3.2.3"
 
 [libraries]
 discordkt = { module = "me.jakejmattson:DiscordKt", version.ref = "discordkt" }
@@ -21,6 +22,7 @@ exposed-dao = { module = "org.jetbrains.exposed:exposed-dao", version.ref = "exp
 mysql-connector = { module = "mysql:mysql-connector-java", version.ref = "mysql" } # Try again with r2dbc one day
 netty-server = { module = "com.corundumstudio.socketio:netty-socketio", version.ref = "netty-server" }
 netty-client = { module = "dev.icerock.moko:socket-io", version.ref = "netty-client"}
+ktor-network = { module = "io.ktor:ktor-network", version.ref = "ktor"}
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
