@@ -3,6 +3,4 @@ plugins {
 }
 
 rootProject.name = "chesnay-bot"
-include("common")
-include(":discord-bot")
-include(":cli-remote")
+include("common", "discord-bot", "cli-remote")

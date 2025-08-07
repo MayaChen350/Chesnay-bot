@@ -11,5 +11,5 @@ subprojects {
         gradlePluginPortal()
     }
 
-    group = "io.github.mayachen350"
+//    group = "io.github.mayachen350"
 }

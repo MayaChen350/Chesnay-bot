@@ -1,13 +1,21 @@
 package io.github.mayachen350.chesnaybot.bot
 
 import io.github.mayachen350.chesnaybot.bot.features.event.logic.log
+import io.github.mayachen350.chesnaybot.common.thanks.VarInt
+import io.github.mayachen350.chesnaybot.common.thanks.VarInt.getVarInt
+import io.github.mayachen350.chesnaybot.common.thanks.VarInt.putVarInt
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
+import io.ktor.util.asStream
 import io.ktor.utils.io.*
+import io.ktor.utils.io.jvm.javaio.toOutputStream
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
+import kotlinx.io.readByteArray
+import kotlinx.io.readString
+import java.nio.ByteBuffer
 
 object RemoteAccess {
     const val HOSTNAME: String = ""
@@ -26,9 +34,11 @@ object RemoteAccess {
                 socket.openReadChannel().run {
 
                     withContext(Dispatchers.IO) {
+                        // TODO: Uhm test this (is this stupid)
                         while (this.isActive) {
                             while (this@run.availableForRead != 0) {
-                                handle(this@run.readUTF8Line())
+                                val sizeRead: Int = getVarInt(this@run.readBuffer())
+                                handle(this@run.readBuffer(sizeRead).readString())
                             }
                         }
                     }
@@ -54,12 +64,12 @@ object RemoteAccess {
 
     suspend fun handle(response: String?) {
         if (response != null) {
-            writeChannel.writeStringUtf8(
-                when (response) {
-                    "hi" -> "hi!"
-                    else -> "idk what to say to that"
-                }
-            )
+            val responseToReponse = when (response) {
+                "hi" -> "hi!"
+                else -> "idk what to say to that"
+            }
+            putVarInt(responseToReponse.length, writeChannel.toOutputStream())
+            writeChannel.writeStringUtf8(responseToReponse)
         }
     }
 }

@@ -13,7 +13,7 @@ plugins {
 
 
 version = Properties().run {
-    load(FileInputStream("discord-bot/src/main/resources/bot.properties"))
+    load(FileInputStream("${project.projectDir}/src/main/resources/bot.properties"))
     getProperty("version")
 }
 description = "Official bot of the Salon de Chesnay Discord Server."
@@ -28,6 +28,7 @@ dependencies {
     implementation(libs.exposed.dao)
     implementation(libs.mysql.connector) // it's vulnerable :c
     implementation(libs.ktor.network)
+    implementation(project(":common"))
 
     testImplementation(kotlin("test"))
 }

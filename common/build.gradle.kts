@@ -1,15 +1,14 @@
 plugins {
     kotlin("jvm") version "2.2.0"
+    java
 }
-
-group = "io.github.mayachen350"
-version = "unspecified"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation(libs.ktor.network)
     testImplementation(kotlin("test"))
 }
 
@@ -17,5 +16,5 @@ tasks.test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(24)
+    jvmToolchain(22)
 }
